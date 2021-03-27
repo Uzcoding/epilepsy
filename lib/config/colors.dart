@@ -13,4 +13,7 @@ abstract class Palette {
   static const Color accordionIcon = Color(0xFF6f808b);
   static const Color drawerText = Color(0xFF58749D);
   static const Color trainerCardText = Color(0xFF6874BC);
+  static const Color calendarSelected = Color(0xFF2997ff);
+  static const Color calendarMarker = Color(0xFFad6ee5);
+  static const Color calendarOutDays = Color(0xFFaaaaaa);
 }
