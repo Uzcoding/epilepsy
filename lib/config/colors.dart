@@ -11,7 +11,6 @@ abstract class Palette {
   static const Color drugSubtitle = Color(0xFF929293);
   static const Color drugFooter = Color(0xFFd9e0ea);
   static const Color accordionIcon = Color(0xFF6f808b);
-  static const Color accordion = Color(0xFFeaebf3);
   static const Color drawerText = Color(0xFF58749D);
   static const Color trainerCardText = Color(0xFF6874BC);
 }

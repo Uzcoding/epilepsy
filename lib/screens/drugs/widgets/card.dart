@@ -11,7 +11,7 @@ class DrugsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Palette.accordion,
+        color: Palette.scaffoldBackgorund,
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: [
           BoxShadow(

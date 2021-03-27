@@ -34,7 +34,7 @@ class FaqScreen extends StatelessWidget {
                       header: Container(
                         padding: const EdgeInsets.all(12.0),
                         decoration: BoxDecoration(
-                          color: Palette.accordion,
+                          color: Palette.scaffoldBackgorund,
                           borderRadius: BorderRadius.circular(8.0),
                           boxShadow: [
                             BoxShadow(
@@ -84,7 +84,7 @@ class FaqScreen extends StatelessWidget {
                       header: Container(
                         padding: const EdgeInsets.all(12.0),
                         decoration: BoxDecoration(
-                          color: Palette.accordion,
+                          color: Palette.scaffoldBackgorund,
                           borderRadius: BorderRadius.circular(8.0),
                           boxShadow: [
                             BoxShadow(
@@ -134,7 +134,7 @@ class FaqScreen extends StatelessWidget {
                       header: Container(
                         padding: const EdgeInsets.all(12.0),
                         decoration: BoxDecoration(
-                          color: Palette.accordion,
+                          color: Palette.scaffoldBackgorund,
                           borderRadius: BorderRadius.circular(8.0),
                           boxShadow: [
                             BoxShadow(

@@ -1,4 +1,4 @@
-abstract class AppIcons {
+class AppIcons {
   static const assets = 'assets/';
   static const icons = '${assets}icons/';
 

@@ -22,6 +22,13 @@ abstract class TextStyles {
     fontSize: 12.0,
   );
 
+  static const newsDate = TextStyle(
+    fontFamily: 'SF-UI-Display',
+    fontWeight: FontWeight.bold,
+    color: Palette.drugSubtitle,
+    fontSize: 13.0,
+  );
+
   static const trainerCardTitle = TextStyle(
     fontFamily: 'SF-UI-Display',
     color: Palette.darkBlue,
@@ -71,10 +78,24 @@ abstract class TextStyles {
     fontSize: 18.0,
   );
 
+  static const newsButton = TextStyle(
+    fontFamily: 'SF-UI-Display',
+    color: Palette.purple,
+    fontWeight: FontWeight.bold,
+    fontSize: 13.0,
+  );
+
   static const drawerText = TextStyle(
     fontFamily: 'SF-UI-Display',
     fontWeight: FontWeight.w600,
     fontSize: 16.0,
     color: Palette.drawerText,
+  );
+
+  static const newsText = TextStyle(
+    fontFamily: 'SF-UI-Display',
+    color: Palette.darkBlue,
+    fontWeight: FontWeight.w600,
+    fontSize: 15.0,
   );
 }

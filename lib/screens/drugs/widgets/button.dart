@@ -15,11 +15,13 @@ class DrugsButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-            side: BorderSide(color: Palette.purple, width: 1.0),
-            elevation: 0.0,
-            primary: Palette.scaffoldBackgorund,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(24.0))),
+          side: BorderSide(color: Palette.purple, width: 1.0),
+          elevation: 0.0,
+          primary: Palette.scaffoldBackgorund,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+        ),
         child: Text(
           'Добавить',
           style: TextStyles.drugButton,
