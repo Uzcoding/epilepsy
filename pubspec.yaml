@@ -1,0 +1,53 @@
+name: epilepsy
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  get: ^3.26.0
+  get_storage:
+  expandable: ^5.0.1
+  flutter_svg: ^0.19.3
+
+  cupertino_icons: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+
+  
+
+  assets:
+    - assets/images/
+    - assets/icons/
+
+
+  fonts:
+    - family: SF-UI-Display
+      fonts:
+        - asset: assets/fonts/SF-UI-Display-Regular.ttf
+        - asset: assets/fonts/SF-UI-Display-Heavy.ttf
+          weight: 900
+        - asset: assets/fonts/SF-UI-Display-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/SF-UI-Display-Semibold.ttf
+          weight: 600
+        - asset: assets/fonts/SF-UI-Display-Light.ttf
+          weight: 300
+    - family:  EpilepsyIcons
+      fonts:
+        - asset: assets/fonts/EpilepsyIcons.ttf
+
