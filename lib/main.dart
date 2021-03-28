@@ -16,7 +16,7 @@ class Epilepsy extends StatelessWidget {
         scaffoldBackgroundColor: Palette.scaffoldBackgorund,
         accentColor: Palette.scaffoldBackgorund,
       ),
-      home: CalendarScreen(),
+      home: NewAccessScreen(),
     );
   }
 }

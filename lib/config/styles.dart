@@ -29,6 +29,13 @@ abstract class TextStyles {
     fontSize: 13.0,
   );
 
+  static const subTitle = TextStyle(
+    fontFamily: 'SF-UI-Display',
+    fontWeight: FontWeight.bold,
+    color: Palette.drugSubtitle,
+    fontSize: 14.0,
+  );
+
   static const trainerCardTitle = TextStyle(
     fontFamily: 'SF-UI-Display',
     color: Palette.darkBlue,

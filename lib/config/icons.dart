@@ -23,4 +23,12 @@ class AppIcons {
   static const settings = '${icons}settings.svg';
   static const support = '${icons}support.svg';
   static const tendencies = '${icons}tendencies.svg';
+
+  // Access
+  static const accessCalendar = '${icons}access-calendar.svg';
+  static const accessMind = '${icons}access-mind.svg';
+  static const accessClock = '${icons}access-clock.svg';
+  static const accessNote = '${icons}access-note.svg';
+  static const accessRun = '${icons}access-run.svg';
+  static const mark = '${icons}mark.svg';
 }
