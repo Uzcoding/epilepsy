@@ -1,19 +1,24 @@
 import 'package:epilepsy/config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Map<int, dynamic> drawerData = {
-    0: {'icon': AppIcons.drawerCalendar, 'text': 'Календарь'},
+    0: {
+      'icon': AppIcons.drawerCalendar,
+      'text': 'Календарь',
+      'route': AppRoutes.calendar
+    },
     1: {'icon': AppIcons.tendencies, 'text': 'Тенденции'},
-    2: {'icon': AppIcons.energy, 'text': 'Лекарства'},
+    2: {'icon': AppIcons.energy, 'text': 'Лекарства', 'route': AppRoutes.drugs},
     3: {'icon': AppIcons.plants, 'text': 'Тарифы'},
     4: {'icon': AppIcons.eeg, 'text': 'ЭЭГ'},
-    5: {'icon': AppIcons.news, 'text': 'Новости'},
+    5: {'icon': AppIcons.news, 'text': 'Новости', 'route': AppRoutes.news},
     6: {'icon': AppIcons.settings, 'text': 'Настройки'},
     7: {'icon': AppIcons.aboutApp, 'text': 'О приложении'},
     8: {'icon': AppIcons.support, 'text': 'Служба поддержки'},
-    9: {'icon': AppIcons.faq, 'text': 'FAQ'},
+    9: {'icon': AppIcons.faq, 'text': 'FAQ', 'route': AppRoutes.faq},
   };
 
   @override
@@ -33,6 +38,11 @@ class CustomDrawer extends StatelessWidget {
                     children: List.generate(
                   drawerData.length,
                   (index) => ListTile(
+                    onTap: () {
+                      drawerData[index]['route'] != null
+                          ? Get.toNamed(drawerData[index]['route'])
+                          : print('No Route');
+                    },
                     leading: SvgPicture.asset(
                       drawerData[index]['icon'],
                       fit: BoxFit.scaleDown,

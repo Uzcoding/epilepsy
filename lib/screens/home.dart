@@ -34,6 +34,13 @@ class _HomeScreenState extends State<HomeScreen>
     super.dispose();
   }
 
+  @override
+  void didChangeDependencies() {
+    print('controller end');
+    _controller.reverse();
+    super.didChangeDependencies();
+  }
+
   _toggleAnimation() {
     _controller.isDismissed ? _controller.forward() : _controller.reverse();
   }

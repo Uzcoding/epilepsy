@@ -43,6 +43,22 @@ abstract class TextStyles {
     fontSize: 18.0,
   );
 
+  static const notChecked = TextStyle(
+    fontFamily: 'SF-UI-Display',
+    color: Palette.darkBlue,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.1,
+    fontSize: 18.0,
+  );
+
+  static const checked = TextStyle(
+    fontFamily: 'SF-UI-Display',
+    color: Palette.purple,
+    fontWeight: FontWeight.w400,
+    fontSize: 18.0,
+    letterSpacing: 0.1,
+  );
+
   static const accordionTitle = TextStyle(
     fontFamily: 'SF-UI-Display',
     color: Palette.darkBlue,
@@ -104,5 +120,19 @@ abstract class TextStyles {
     color: Palette.darkBlue,
     fontWeight: FontWeight.w600,
     fontSize: 15.0,
+  );
+
+  static const dialogCancel = TextStyle(
+    fontFamily: 'SF-UI-Display',
+    color: Palette.purple,
+    fontWeight: FontWeight.bold,
+    fontSize: 17.0,
+  );
+
+  static const dialog = TextStyle(
+    fontFamily: 'SF-UI-Display',
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontSize: 17.0,
   );
 }

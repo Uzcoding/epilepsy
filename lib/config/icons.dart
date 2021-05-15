@@ -23,6 +23,7 @@ class AppIcons {
   static const settings = '${icons}settings.svg';
   static const support = '${icons}support.svg';
   static const tendencies = '${icons}tendencies.svg';
+  static const photo = '${icons}photo.svg';
 
   // Access
   static const accessCalendar = '${icons}access-calendar.svg';

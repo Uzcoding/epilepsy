@@ -9,13 +9,14 @@ class CustomListTile extends StatelessWidget {
   const CustomListTile({
     Key key,
     @required this.leading,
-    @required this.subTitle,
+    this.subTitle,
     @required this.title,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 60.0,
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 18.0),
       margin: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
@@ -36,11 +37,14 @@ class CustomListTile extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  subTitle,
-                  style: TextStyles.subTitle,
-                ),
+                subTitle == null
+                    ? Container()
+                    : Text(
+                        subTitle,
+                        style: TextStyles.subTitle,
+                      ),
                 Text(
                   title,
                   style: TextStyles.accordionTitle,

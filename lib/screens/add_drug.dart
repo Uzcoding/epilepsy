@@ -1,72 +1,23 @@
 import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/utils/sizes.dart';
-import 'package:epilepsy/widgets/access_dialog.dart';
 import 'package:epilepsy/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NewAccessScreen extends StatelessWidget {
-  final Map<int, dynamic> accessData = {
+class AddDrugScreen extends StatelessWidget {
+  final Map<int, dynamic> addDrugsData = {
     0: {
       'leading': AppIcons.accessCalendar,
       'subTitle': '13:30',
       'title': 'Четверг январь 28.2021',
     },
     1: {
-      'leading': AppIcons.accessClock,
-      'subTitle': 'Длительность',
-      'title': '00:27',
+      'leading': AppIcons.accessCalendar,
+      'title': 'Выбрать дату окончания',
     },
     2: {
       'leading': AppIcons.accessMind,
-      'subTitle': 'Вид припадка',
-      'title': 'Название припадка',
-    },
-    3: {
-      'leading': AppIcons.accessNote,
-      'subTitle': 'Причина',
-      'title': 'Добавить причину',
-    },
-    4: {
-      'leading': AppIcons.accessRun,
-      'subTitle': 'Активность',
-      'title': 'Добавить активность',
-    },
-    5: {
-      'leading': AppIcons.mark,
-      'subTitle': 'Место',
-      'title': 'Добавить место',
-    },
-  };
-
-  final Map<int, dynamic> dialogData = {
-    0: {
-      'title': 'Абсанс',
-      'isChecked': false,
-    },
-    1: {
-      'title': 'Атонический',
-      'isChecked': false,
-    },
-    2: {
-      'title': 'Атонический абсанс',
-      'isChecked': false,
-    },
-    3: {
-      'title': 'Клоничесий',
-      'isChecked': false,
-    },
-    4: {
-      'title': 'Сложный парциальный',
-      'isChecked': false,
-    },
-    5: {
-      'title': 'Микологический',
-      'isChecked': false,
-    },
-    6: {
-      'title': 'Серийные миоклонические',
-      'isChecked': false,
+      'title': 'Прикрепить фото',
     },
   };
 
@@ -79,32 +30,44 @@ class NewAccessScreen extends StatelessWidget {
           onTap: () => Get.back(),
           hasAction: false,
           leading: AppIcons.back,
-          title: 'Новый приступ',
+          title: 'Добавить лекрство',
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
-          children: [
+          children: <Widget>[
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      children: List.generate(
-                        accessData.length,
-                        (index) => CustomListTile(
-                          leading: accessData[index]['leading'],
-                          subTitle: accessData[index]['subTitle'],
-                          title: accessData[index]['title'],
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
+                      child: Text(
+                        'Название лекарства',
+                        style: TextStyles.drugCalendar,
+                      ),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 8.0,
+                          horizontal: 15.0,
                         ),
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                        hintText: 'Введите название',
+                        hintStyle: TextStyles.subTitle,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
                       child: Text(
-                        'Добавить примечание',
+                        'Дозировка',
                         style: TextStyles.drugCalendar,
                       ),
                     ),
@@ -118,7 +81,38 @@ class NewAccessScreen extends StatelessWidget {
                         enabledBorder: InputBorder.none,
                         errorBorder: InputBorder.none,
                         disabledBorder: InputBorder.none,
-                        hintText: 'Примечание',
+                        hintText: 'Введите необходимую дозировку',
+                        hintStyle: TextStyles.subTitle,
+                      ),
+                    ),
+                    Column(
+                      children: List.generate(
+                        addDrugsData.length,
+                        (index) => CustomListTile(
+                          leading: addDrugsData[index]['leading'],
+                          subTitle: addDrugsData[index]['subTitle'],
+                          title: addDrugsData[index]['title'],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
+                      child: Text(
+                        'Комментарий',
+                        style: TextStyles.drugCalendar,
+                      ),
+                    ),
+                    TextField(
+                      maxLines: 4,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 15.0),
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                        hintText: 'Введите комментарий',
                         hintStyle: TextStyles.subTitle,
                       ),
                     ),
@@ -129,7 +123,7 @@ class NewAccessScreen extends StatelessWidget {
                         height: 50.0,
                         margin: const EdgeInsets.only(bottom: 40.0),
                         child: ElevatedButton(
-                          onPressed: () => accessDialog(dialogData),
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             side: BorderSide(color: Palette.purple, width: 1.0),
                             elevation: 0.0,
@@ -146,7 +140,7 @@ class NewAccessScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
