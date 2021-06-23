@@ -1,5 +1,6 @@
 import 'package:epilepsy/config/config.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrugsButton extends StatelessWidget {
   const DrugsButton({
@@ -13,7 +14,7 @@ class DrugsButton extends StatelessWidget {
       height: 50.0,
       margin: const EdgeInsets.only(bottom: 40.0, top: 10.0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => Get.toNamed(AppRoutes.addDrug),
         style: ElevatedButton.styleFrom(
           side: BorderSide(color: Palette.purple, width: 1.0),
           elevation: 0.0,
