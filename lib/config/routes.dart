@@ -6,4 +6,7 @@ class AppRoutes {
   static const String faq = '/faq';
   static const String access = '/access';
   static const String addDrug = '/addDrug';
+  static const String login = '/login';
+  static const String confirm = '/confirm';
+  static const String settings = '/settings';
 }

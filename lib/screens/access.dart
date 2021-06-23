@@ -111,6 +111,8 @@ class NewAccessScreen extends StatelessWidget {
                     TextField(
                       maxLines: 4,
                       decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Palette.scaffoldBackgorund,
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 15.0),

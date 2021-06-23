@@ -1,7 +1,10 @@
 export 'home.dart';
 export 'drugs/drugs.dart';
-export 'faq.dart';
+export 'faq/faq.dart';
 export 'news/news.dart';
 export 'calendar.dart';
 export 'access.dart';
 export 'add_drug.dart';
+export 'auth.dart';
+export 'confirm_code.dart';
+export 'settings.dart';

@@ -1,7 +1,10 @@
+import 'package:epilepsy/api/api_service.dart';
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/utils/Prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Map<int, dynamic> drawerData = {
@@ -15,11 +18,26 @@ class CustomDrawer extends StatelessWidget {
     3: {'icon': AppIcons.plants, 'text': 'Тарифы'},
     4: {'icon': AppIcons.eeg, 'text': 'ЭЭГ'},
     5: {'icon': AppIcons.news, 'text': 'Новости', 'route': AppRoutes.news},
-    6: {'icon': AppIcons.settings, 'text': 'Настройки'},
+    6: {
+      'icon': AppIcons.settings,
+      'text': 'Настройки',
+      'route': AppRoutes.settings
+    },
     7: {'icon': AppIcons.aboutApp, 'text': 'О приложении'},
     8: {'icon': AppIcons.support, 'text': 'Служба поддержки'},
     9: {'icon': AppIcons.faq, 'text': 'FAQ', 'route': AppRoutes.faq},
   };
+
+  logOut() async {
+    print('logOut');
+    final int userId = Prefs.userId;
+    if (userId != null) {
+      final result = await ApiService.logOut(userId);
+      print(result);
+      await Prefs.clear();
+      Get.offAndToNamed(AppRoutes.login);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +81,7 @@ class CustomDrawer extends StatelessWidget {
                   'Выход',
                   style: TextStyles.drawerText,
                 ),
+                onTap: logOut,
               ),
             ],
           ),

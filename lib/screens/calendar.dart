@@ -139,6 +139,7 @@ class _CalendarScreenState extends State<CalendarScreen>
         ],
       ),
       child: TableCalendar(
+        locale: 'ru_Ru',
         calendarController: _calendarController,
         events: _events,
         holidays: _holidays,

@@ -10,7 +10,8 @@ class HomeFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+      margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0)
+          .copyWith(bottom: 25),
       width: double.infinity,
       height: 64.0,
       child: ElevatedButton(
@@ -25,7 +26,6 @@ class HomeFooter extends StatelessWidget {
         child: Text(
           'Приступ',
           style: const TextStyle(
-            fontFamily: 'SF-UI-Display',
             fontSize: 22.0,
             fontWeight: FontWeight.bold,
             color: Colors.white,

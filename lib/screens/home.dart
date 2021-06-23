@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/utils/Prefs.dart';
 import 'package:epilepsy/utils/sizes.dart';
 import 'package:epilepsy/widgets/trainer_card.dart';
 import 'package:epilepsy/widgets/widgets.dart';
@@ -24,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
+    print(Prefs.token);
     _controller =
         AnimationController(vsync: this, duration: _HomeScreenState.duration);
   }
