@@ -18,4 +18,9 @@ abstract class ApiUrls {
 
   // Profile
   static const profile = '$baseUrl/profile/show';
+
+  //EEG
+
+  static const eeg = '$baseUrl/eeg/index';
+  static const eegStore = '$baseUrl/eeg/store';
 }

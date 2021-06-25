@@ -1,4 +1,7 @@
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/screens/eeg/eeg.dart';
+import 'package:epilepsy/screens/eeg/widgets/add_eeg_body.dart';
+import 'package:epilepsy/screens/eeg/widgets/add_eeg_calendar.dart';
 import 'package:epilepsy/screens/screens.dart';
 
 import 'package:get/get.dart';
@@ -15,5 +18,11 @@ class AppPages {
     GetPage(name: '${AppRoutes.login}', page: () => AuthScreen()),
     GetPage(name: '${AppRoutes.confirm}', page: () => ConfirmCodeScreen()),
     GetPage(name: '${AppRoutes.settings}', page: () => SettingsScreen()),
+    GetPage(name: '${AppRoutes.settings}', page: () => SettingsScreen()),
+    GetPage(name: '${AppRoutes.eeg}', page: () => EEGScreen()),
+    GetPage(name: '${AppRoutes.addEEG}', page: () => AddEEGScreen()),
+    GetPage(
+        name: '${AppRoutes.addEEGCalendar}',
+        page: () => AddEEGCalendarScreen()),
   ];
 }

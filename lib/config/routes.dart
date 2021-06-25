@@ -9,4 +9,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String confirm = '/confirm';
   static const String settings = '/settings';
+  static const String eeg = '/eeg';
+  static const String addEEG = '/addEEG';
+  static const String addEEGCalendar = '/addEEGCalendart';
 }

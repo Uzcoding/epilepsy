@@ -1,17 +1,35 @@
 import 'dart:convert';
 
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/models/EEGApi.dart';
 import 'package:epilepsy/models/models.dart';
 import 'package:epilepsy/utils/Prefs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:http/http.dart' as http;
 
 class ApiService {
   static var client = http.Client();
   static final token = Prefs.token ?? '';
   static final headers = {'Authorization': 'Bearer $token'};
+
+  //EEG API
+
+  static Future<EEGApi> fetchEEG() async {
+    var url = Uri.parse(ApiUrls.eeg);
+    try {
+      var response = await client.get(url, headers: headers);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return EEGApi.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
 
   static Future<NewsApi> fetchNews() async {
     var url = Uri.parse(ApiUrls.news);

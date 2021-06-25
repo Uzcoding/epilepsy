@@ -16,7 +16,7 @@ class CustomDrawer extends StatelessWidget {
     1: {'icon': AppIcons.tendencies, 'text': 'Тенденции'},
     2: {'icon': AppIcons.energy, 'text': 'Лекарства', 'route': AppRoutes.drugs},
     3: {'icon': AppIcons.plants, 'text': 'Тарифы'},
-    4: {'icon': AppIcons.eeg, 'text': 'ЭЭГ'},
+    4: {'icon': AppIcons.eeg, 'text': 'ЭЭГ', 'route': AppRoutes.eeg},
     5: {'icon': AppIcons.news, 'text': 'Новости', 'route': AppRoutes.news},
     6: {
       'icon': AppIcons.settings,

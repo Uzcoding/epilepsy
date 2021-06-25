@@ -6,11 +6,11 @@ class CustomListTile extends StatelessWidget {
   final String leading;
   final String subTitle;
   final String title;
-  const CustomListTile({
+  CustomListTile({
     Key key,
     @required this.leading,
     this.subTitle,
-    @required this.title,
+    this.title,
   }) : super(key: key);
 
   @override
