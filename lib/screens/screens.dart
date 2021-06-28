@@ -7,4 +7,4 @@ export 'access.dart';
 export 'add_drug.dart';
 export 'auth.dart';
 export 'confirm_code.dart';
-export 'settings.dart';
+export 'settings/settings.dart';
