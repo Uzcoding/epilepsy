@@ -11,7 +11,9 @@ class ProfileController extends GetxController {
       isLoading(true);
       var fetchedProfile = await ApiService.fetchProfile();
       if (fetchedProfile != null) {
-        profileData.assign(fetchedProfile.data);
+        profileData.clear();
+
+        profileData.add(fetchedProfile.data);
       }
     } finally {
       isLoading(false);
