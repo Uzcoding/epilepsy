@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/models/EEGApi.dart';
 import 'package:epilepsy/models/models.dart';
+import 'package:epilepsy/models/seizures.dart';
 import 'package:epilepsy/utils/Prefs.dart';
 import 'package:flutter/material.dart';
 
@@ -149,6 +150,22 @@ class ApiService {
       if (response.statusCode == 200) {
         var jsonString = response.body;
         return ProfileApi.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
+
+  static Future<SeizuresApi> fetchSeizuresByDate(String date) async {
+    var url = Uri.parse('${ApiUrls.seizuresByDate}$date');
+    try {
+      var response = await client.get(url, headers: headers);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return SeizuresApi.fromJson(json.decode(jsonString));
       }
       print('Request failed with status: ${response.statusCode}.');
       return null;

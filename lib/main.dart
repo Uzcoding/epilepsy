@@ -16,6 +16,8 @@ class Epilepsy extends StatelessWidget {
   final token = Prefs.token ?? '';
   @override
   Widget build(BuildContext context) {
+    print(token);
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

@@ -1,4 +1,5 @@
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/controllers/SeizuresController.dart';
 import 'package:epilepsy/utils/epilepsy_icons.dart';
 import 'package:epilepsy/utils/sizes.dart';
 import 'package:epilepsy/widgets/trainer_card.dart';
@@ -15,6 +16,7 @@ class CalendarScreen extends StatefulWidget {
 
 class _CalendarScreenState extends State<CalendarScreen>
     with TickerProviderStateMixin {
+  final SeizuresController seizuresController = Get.put(SeizuresController());
   Map<DateTime, List> _events;
   List _selectedEvents;
   AnimationController _animationController;
@@ -105,8 +107,13 @@ class _CalendarScreenState extends State<CalendarScreen>
     super.dispose();
   }
 
+  String formatDate(DateTime date) {
+    return date.toString().split(' ')[0];
+  }
+
   void _onDaySelected(DateTime day, List events, List holidays) {
     print('CALLBACK: _onDaySelected');
+    seizuresController.fetchSeizuresByDate(formatDate(day));
     setState(() {
       _selectedEvents = events;
     });
@@ -119,6 +126,7 @@ class _CalendarScreenState extends State<CalendarScreen>
 
   void _onCalendarCreated(
       DateTime first, DateTime last, CalendarFormat format) {
+    seizuresController.fetchSeizuresByDate(formatDate(DateTime.now()));
     print('CALLBACK: _onCalendarCreated');
   }
 
@@ -214,11 +222,35 @@ class _CalendarScreenState extends State<CalendarScreen>
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        child: Column(
-          children: <Widget>[
-            _buildTableCalendar(),
-            TrainerCard(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              _buildTableCalendar(),
+              Obx(() {
+                if (seizuresController.isLoading.value) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                if (seizuresController.seizuresList.isBlank) {
+                  return Center(
+                    child: Text('No data'),
+                  );
+                }
+
+                return Column(
+                  children: List.generate(
+                    seizuresController.seizuresList.length,
+                    (index) => Padding(
+                      padding: EdgeInsets.only(bottom: 20),
+                      child: TrainerCard(),
+                    ),
+                  ),
+                );
+              }),
+            ],
+          ),
         ),
       ),
     );
