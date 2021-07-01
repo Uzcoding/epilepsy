@@ -131,7 +131,7 @@ class _ConfirmCodeScreenState extends State<ConfirmCodeScreen> {
                   decoration: InputDecoration(
                     counterText: '',
                     prefixIcon: Icon(
-                      Icons.password,
+                      Icons.lock_outlined,
                       color: Palette.purple,
                       size: 30.0,
                     ),

@@ -48,8 +48,12 @@ class _AddEEGScreenState extends State<AddEEGScreen> {
   final picker = ImagePicker();
   _imgFromGallery() async {
     try {
-      PickedFile pickedFile =
-          await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
+      PickedFile pickedFile = await picker.getImage(
+        ImageSource: ImageSource.gallery,
+      );
+      // PickedFile pickedFile =
+      //     await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
+
       if (pickedFile != null) {
         _image = File(pickedFile.path);
         setState(() {});
