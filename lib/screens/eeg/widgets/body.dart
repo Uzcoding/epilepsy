@@ -1,6 +1,5 @@
 import 'package:epilepsy/controllers/EEGController.dart';
 import 'package:epilepsy/models/EEGModel.dart';
-import 'package:epilepsy/screens/drugs/widgets/button.dart';
 import 'package:epilepsy/screens/eeg/widgets/add_eeg_button.dart';
 import 'package:epilepsy/screens/eeg/widgets/card.dart';
 

@@ -23,6 +23,9 @@ abstract class ApiUrls {
   static const eeg = '$baseUrl/eeg/index';
   static const eegStore = '$baseUrl/eeg/store';
 
+  //profile
+  static const profileUpdate = '$baseUrl/profile/update';
+
   //SEIZURES
   static const seizuresByDate = '$baseUrl/seizures/date/';
 }

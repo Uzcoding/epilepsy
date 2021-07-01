@@ -48,8 +48,12 @@ class _AddEEGScreenState extends State<AddEEGScreen> {
   final picker = ImagePicker();
   _imgFromGallery() async {
     try {
-      PickedFile pickedFile =
-          await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
+      PickedFile pickedFile = await picker.getImage(
+        ImageSource: ImageSource.gallery,
+      );
+      // PickedFile pickedFile =
+      //     await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
+
       if (pickedFile != null) {
         _image = File(pickedFile.path);
         setState(() {});
@@ -196,13 +200,6 @@ class _AddEEGScreenState extends State<AddEEGScreen> {
 
                     if (response.statusCode == 200) {
                       print('okayy');
-                      // g.Get.snackbar(null, null,
-                      //     messageText: Text(
-                      //       'Ваши данные сохранены!',
-                      //       style: TextStyle(color: Colors.white),
-                      //     ),
-                      //     backgroundColor: Color(0xff007E33));
-                      // usrController.fetchProfileData();
                     }
                   },
                   style: ElevatedButton.styleFrom(

@@ -1,16 +1,19 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/controllers/ProfileController.dart';
-import 'package:epilepsy/models/models.dart';
-import 'package:epilepsy/screens/settings/date_birth.dart';
-import 'package:epilepsy/screens/settings/genders.dart';
+import 'package:epilepsy/screens/settings/controller/date_of_birth_controller.dart';
+import 'package:epilepsy/screens/settings/controller/gender_controller.dart';
+import 'package:epilepsy/screens/settings/widgets/date_birth.dart';
+import 'package:epilepsy/screens/settings/widgets/genders.dart';
 import 'package:epilepsy/screens/settings/widgets/langguage_choice.dart';
 import 'package:epilepsy/screens/settings/widgets/language_choice_dialog.dart';
+import 'package:epilepsy/utils/Prefs.dart';
 import 'package:epilepsy/utils/sizes.dart';
 import 'package:epilepsy/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' as g;
 import 'package:image_picker/image_picker.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -21,9 +24,13 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final ProfileController profileController = Get.put(ProfileController());
-  final picker = ImagePicker();
-  File _image;
+  final ProfileController profileController = g.Get.find<ProfileController>();
+  final TextEditingController username = TextEditingController();
+  final GenderController genderController = g.Get.find<GenderController>();
+  final DateOfBirthController dateOfBirthController =
+      g.Get.find<DateOfBirthController>();
+
+  String genderLetter = 'n';
 
   final Map<int, dynamic> dialogData = {
     0: {
@@ -40,11 +47,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
     },
   };
 
+  DateTime dateTime = DateTime.now();
+
   @override
   void initState() {
     super.initState();
     profileController.fetchProfile();
+    username..text = profileController.profileData.first.profile.name;
   }
+
+  Dio dio = Dio();
+  final picker = ImagePicker();
+  File _image;
 
   _imgFromGallery() async {
     try {
@@ -68,13 +82,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: PreferredSize(
         preferredSize: Size(GetSize.width, 100.0),
         child: CustomAppBar(
-          onTap: () => Get.back(),
+          onTap: () => g.Get.back(),
           hasAction: false,
           leading: AppIcons.back,
           title: 'Настройки',
         ),
       ),
-      body: Obx(
+      body: g.Obx(
         () {
           var data = profileController.profileData;
           if (profileController.isLoading.value) {
@@ -164,6 +178,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                         TextField(
+                          controller: username,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -204,7 +219,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                         Genders(),
-                        DateOfBirth(),
+                        DateOfBirth(
+                            // dateOfBirth: dateTime,
+                            // dateChangerFunction:  pickDate,
+                            ),
                         GestureDetector(
                           onTap: () => languageChoiceDialog(dialogData),
                           child: LanguageChoiceListTile(
@@ -224,7 +242,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   height: 50.0,
                   margin: const EdgeInsets.only(bottom: 40.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      FormData formData = FormData.fromMap({
+                        'name': username.text,
+                        'birthday': dateOfBirthController.dateOfBirth.value,
+                        'gender': genderController.genderCode.value == 0
+                            ? 'n'
+                            : genderController.genderCode.value == 1
+                                ? 'm'
+                                : 'f',
+                      });
+                      if (_image != null) {
+                        String fileName = _image.path.split('/').last;
+                        formData.files.addAll([
+                          MapEntry(
+                            "image",
+                            await MultipartFile.fromFile(
+                              _image.path,
+                              filename: fileName,
+                            ),
+                          ),
+                        ]);
+                      }
+
+                      //sending post
+
+                      final token = Prefs.token;
+                      var response = await dio.post(
+                        ApiUrls.profileUpdate,
+                        data: formData,
+                        options: Options(
+                          headers: {
+                            HttpHeaders.authorizationHeader: 'Bearer $token'
+                          },
+                        ),
+                      );
+                      if (response.statusCode == 200) {
+                        print('okayy');
+                      } else {
+                        print('error in sending post method in settings dart');
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       side: BorderSide(color: Palette.purple, width: 1.0),
                       elevation: 0.0,

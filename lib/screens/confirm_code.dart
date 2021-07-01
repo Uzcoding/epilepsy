@@ -2,8 +2,6 @@ import 'package:epilepsy/api/api_service.dart';
 import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/utils/Prefs.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ConfirmCodeScreen extends StatefulWidget {
   const ConfirmCodeScreen({Key key}) : super(key: key);
@@ -133,7 +131,7 @@ class _ConfirmCodeScreenState extends State<ConfirmCodeScreen> {
                   decoration: InputDecoration(
                     counterText: '',
                     prefixIcon: Icon(
-                      Icons.password,
+                      Icons.lock_outlined,
                       color: Palette.purple,
                       size: 30.0,
                     ),
