@@ -28,4 +28,8 @@ abstract class ApiUrls {
 
   //SEIZURES
   static const seizuresByDate = '$baseUrl/seizures/date/';
+
+  //Drugs
+  static const drugs = '$baseUrl/drugs/index';
+  static const addDrug = '$baseUrl/drugs/store';
 }

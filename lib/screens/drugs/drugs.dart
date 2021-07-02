@@ -1,4 +1,6 @@
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/controllers/druglist_controller.dart';
+import 'package:epilepsy/screens/drugs/widgets/body.dart';
 import 'package:epilepsy/screens/drugs/widgets/widgets.dart';
 import 'package:epilepsy/utils/sizes.dart';
 import 'package:epilepsy/widgets/widgets.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DrugsScreen extends StatelessWidget {
+  final DrugController drugController = Get.put(DrugController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,26 +21,7 @@ class DrugsScreen extends StatelessWidget {
           title: 'Лекарства',
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              child: ListView.separated(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                itemCount: 3,
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 20.0),
-                itemBuilder: (context, index) {
-                  return DrugsCard();
-                },
-              ),
-            ),
-          ),
-          DrugsButton()
-        ],
-      ),
+      body: Body(),
     );
   }
 }

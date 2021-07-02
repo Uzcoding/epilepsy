@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/models/EEGApi.dart';
+import 'package:epilepsy/models/drug_list_api.dart';
 import 'package:epilepsy/models/models.dart';
 import 'package:epilepsy/models/seizures.dart';
 import 'package:epilepsy/utils/Prefs.dart';
@@ -32,6 +33,25 @@ class ApiService {
     }
   }
 
+  //Drugs
+  static Future<DrugListApi> fetchdrugs() async {
+    var url = Uri.parse(ApiUrls.drugs);
+    try {
+      var response = await client.get(url, headers: headers);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        print('success in druglist api');
+        return DrugListApi.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
+
+  //News
   static Future<NewsApi> fetchNews() async {
     var url = Uri.parse(ApiUrls.news);
     try {

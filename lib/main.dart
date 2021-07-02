@@ -1,5 +1,7 @@
 import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/controllers/ProfileController.dart';
+import 'package:epilepsy/screens/drugs/controllers/endi_drug_controller.dart';
+import 'package:epilepsy/screens/drugs/controllers/start_drug_controller.dart';
 import 'package:epilepsy/screens/screens.dart';
 import 'package:epilepsy/screens/settings/controller/gender_controller.dart';
 import 'package:epilepsy/utils/Prefs.dart';
@@ -28,7 +30,10 @@ class _EpilepsyState extends State<Epilepsy> {
 
   final DateOfBirthController dateOfBirthController =
       Get.put(DateOfBirthController());
+  final StartDrugController startDrugController =
+      Get.put(StartDrugController());
 
+  final EndDrugController endDrugController = Get.put(EndDrugController());
   final ProfileController profileController = Get.put(ProfileController());
   @override
   void initState() {

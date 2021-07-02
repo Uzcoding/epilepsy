@@ -49,7 +49,7 @@ class _AddEEGScreenState extends State<AddEEGScreen> {
   _imgFromGallery() async {
     try {
       PickedFile pickedFile = await picker.getImage(
-        ImageSource: ImageSource.gallery,
+        source: ImageSource.gallery,
       );
       // PickedFile pickedFile =
       //     await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
@@ -200,6 +200,7 @@ class _AddEEGScreenState extends State<AddEEGScreen> {
 
                     if (response.statusCode == 200) {
                       print('okayy');
+                      g.Get.back();
                     }
                   },
                   style: ElevatedButton.styleFrom(

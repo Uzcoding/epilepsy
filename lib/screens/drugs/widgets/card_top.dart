@@ -1,9 +1,12 @@
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/models/drug_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DrugsCardTop extends StatelessWidget {
+  final DrugList drugList;
   const DrugsCardTop({
+    this.drugList,
     Key key,
   }) : super(key: key);
 
@@ -22,7 +25,8 @@ class DrugsCardTop extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Диазепам (Валиум)',
+                    // 'Диазепам (Валиум)',
+                    drugList.title,
                     style: TextStyles.trainerCardTitle,
                   ),
                   Text(
@@ -36,7 +40,8 @@ class DrugsCardTop extends StatelessWidget {
                       children: [
                         Flexible(
                           child: Text(
-                            '2 р. В день через час после еды',
+                            // '2 р. В день через час после еды',
+                            drugList.dosage,
                             style: TextStyles.drugText,
                           ),
                         ),

@@ -1,10 +1,13 @@
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/models/drug_list.dart';
 import 'package:epilepsy/screens/drugs/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DrugsCard extends StatelessWidget {
+  final DrugList drugList;
   const DrugsCard({
     Key key,
+    this.drugList,
   }) : super(key: key);
 
   @override
@@ -23,8 +26,12 @@ class DrugsCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          DrugsCardTop(),
-          DrugsCardBottom(),
+          DrugsCardTop(
+            drugList: drugList,
+          ),
+          DrugsCardBottom(
+            drugList: drugList,
+          ),
         ],
       ),
     );
