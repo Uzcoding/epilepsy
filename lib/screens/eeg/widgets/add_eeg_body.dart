@@ -65,33 +65,6 @@ class _AddEEGScreenState extends State<AddEEGScreen> {
       return;
     }
   }
-  // Future getUserImage() async {
-  //   final pickedUserImage =
-  //       await userImagePicker.getImage(source: ImageSource.gallery);
-  //   setState(() {
-  //     if (pickedUserImage != null) {
-  //       _image = File(pickedUserImage.path);
-  //       print('successs');
-  //     } else {
-  //       print('No Image Selected');
-  //     }
-  //   });
-  // }
-  // _imgFromGallery() async {
-  //   try {
-  //     PickedFile pickedFile =
-  //         await picker.getImage(source: ImageSource.gallery, imageQuality: 50);
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //       setState(() {});
-  //     } else {
-  //       return;
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //     return;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {

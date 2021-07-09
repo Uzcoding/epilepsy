@@ -4,6 +4,7 @@ import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/models/EEGApi.dart';
 import 'package:epilepsy/models/drug_list_api.dart';
 import 'package:epilepsy/models/models.dart';
+import 'package:epilepsy/models/seizure_type.dart';
 import 'package:epilepsy/models/seizures.dart';
 import 'package:epilepsy/utils/Prefs.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,105 @@ class ApiService {
   static var client = http.Client();
   static final token = Prefs.token ?? '';
   static final headers = {'Authorization': 'Bearer $token'};
+
+  //Seizure store
+
+  static Future storeSeizure(String date, String duration, String type,
+      String reason, String activity, String place, String notes) async {
+    var url = Uri.parse(ApiUrls.seizureStore);
+    try {
+      var response = await client.post(url, headers: headers, body: {
+        'date': date,
+
+        'duration': duration,
+        // 'duration': _printDuration(initialtimer),
+        'type': type,
+        'reason': reason,
+        'activity': activity,
+        'place': place,
+        'notice': notes,
+      });
+      print(response.body);
+      if (response.statusCode == 200) {
+        print('success in store');
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      print('Request failed with error: $e.');
+    }
+  }
+  //Seizure Types
+
+  static Future<SeizureTypeModel> fetchSeizureType() async {
+    var url = Uri.parse(ApiUrls.seizureTypes);
+    try {
+      var response = await client.get(url);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return SeizureTypeModel.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
+
+  //Seizure Reasones
+
+  static Future<SeizureTypeModel> fetchSeizureReasons() async {
+    var url = Uri.parse(ApiUrls.seizureReasons);
+    try {
+      var response = await client.get(url);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return SeizureTypeModel.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
+  //Seizure Placees
+
+  static Future<SeizureTypeModel> fetchSeizurePlaces() async {
+    var url = Uri.parse(ApiUrls.seizurePlaces);
+    try {
+      var response = await client.get(url);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return SeizureTypeModel.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
+  //Seizure Activities
+
+  static Future<SeizureTypeModel> fetchSeizureActivities() async {
+    var url = Uri.parse(ApiUrls.seizureActivities);
+    try {
+      var response = await client.get(url);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return SeizureTypeModel.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
+
+  //Seizure Store
 
   //EEG API
 

@@ -1,11 +1,16 @@
 import 'dart:ui';
 
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/controllers/seizure_activities_controller.dart';
+import 'package:epilepsy/controllers/seizure_places_controller.dart';
+import 'package:epilepsy/controllers/seizure_reasons_controller.dart';
+import 'package:epilepsy/controllers/seizure_type_controller.dart';
 import 'package:epilepsy/utils/Prefs.dart';
 import 'package:epilepsy/utils/sizes.dart';
 import 'package:epilepsy/widgets/trainer_card.dart';
 import 'package:epilepsy/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -79,6 +84,16 @@ class _HomeScreenState extends State<HomeScreen>
     }
   }
 
+  final SeizureTypesController seizureTypesController =
+      Get.put(SeizureTypesController());
+
+  final SeizureReasonsController seizureReasonsController =
+      Get.put(SeizureReasonsController());
+
+  final SeizurePlacesController seizurePlacesController =
+      Get.put(SeizurePlacesController());
+  final SeizureActivitiesController seizureActivitiesController =
+      Get.put(SeizureActivitiesController());
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

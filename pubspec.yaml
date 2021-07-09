@@ -25,6 +25,7 @@ dependencies:
   get: ^4.1.4
   dio: ^4.0.0
   chartjs: ^0.5.2
+  marquee: ^2.2.0
 
   cupertino_icons: ^1.0.0
 
