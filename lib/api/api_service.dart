@@ -14,15 +14,25 @@ import 'package:http/http.dart' as http;
 class ApiService {
   static var client = http.Client();
   static final token = Prefs.token ?? '';
+  static final headers2 = {
+    'Authorization': 'Bearer $token',
+    'Accept': 'application/json'
+  };
   static final headers = {'Authorization': 'Bearer $token'};
 
   //Seizure store
 
-  static Future storeSeizure(String date, String duration, String type,
-      String reason, String activity, String place, String notes) async {
+  static Future storeSeizure(
+      {String date,
+      String duration,
+      String type,
+      String reason,
+      String activity,
+      String place,
+      String notes}) async {
     var url = Uri.parse(ApiUrls.seizureStore);
     try {
-      var response = await client.post(url, headers: headers, body: {
+      var response = await client.post(url, headers: headers2, body: {
         'date': date,
 
         'duration': duration,

@@ -277,14 +277,28 @@ class _NewAccessScreenState extends State<NewAccessScreen> {
                           height: 50.0,
                           margin: const EdgeInsets.only(bottom: 40.0),
                           child: ElevatedButton(
-                            onPressed: () => ApiService.storeSeizure(
-                                '21-21-21',
-                                '00:23',
-                                'some type',
-                                'reason',
-                                'activity',
-                                'place',
-                                'notes'),
+                            onPressed: () async {
+                              String myDate = DateFormat.yMd('ru')
+                                      .format(dateTime)
+                                      .toString() +
+                                  ' ' +
+                                  dateString;
+                              String du = _printDuration(initialtimer);
+                              print(myDate);
+                              print(du);
+                              await ApiService.storeSeizure(
+                                // date: '01.01.2021 10:58:00',
+                                date: myDate,
+
+                                duration: du,
+                                type: mySeizureType,
+                                reason: mySizureReason,
+                                activity: mySizureActivity,
+                                place: mySizurePlace,
+                                notes: noteController.text,
+                              );
+                              Get.back();
+                            },
                             // onPressed: () async {
                             //   String myToooken = Prefs.token;
                             //   final headers = {
@@ -465,7 +479,7 @@ class _NewAccessScreenState extends State<NewAccessScreen> {
       setState(() {
         hour = pickedtime.hour.toString();
         minute = pickedtime.minute.toString();
-        dateString = hour + ' ' + minute;
+        dateString = hour + ':' + minute;
         // dateTime = date;
       });
     }
