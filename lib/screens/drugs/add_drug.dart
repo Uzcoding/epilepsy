@@ -11,7 +11,6 @@ import 'package:get/get.dart' as g;
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart';
-import 'package:marquee/marquee.dart';
 
 import 'widgets/scrolling_text.dart';
 

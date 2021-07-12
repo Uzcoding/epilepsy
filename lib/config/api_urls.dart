@@ -27,7 +27,7 @@ abstract class ApiUrls {
   static const profileUpdate = '$baseUrl/profile/update';
 
   //SEIZURES
-  static const seizuresByDate = '$baseUrl/seizures/date/';
+  static const seizuresByDate = '$baseUrl/seizures/date';
   static const seizureStore = '$baseUrl/seizures/store';
 
   //HandBook
@@ -36,6 +36,9 @@ abstract class ApiUrls {
   static const seizureReasons = '$baseUrl/handbook/seizure-reasons';
   static const seizurePlaces = '$baseUrl/handbook/seizure-places';
   static const seizureActivities = '$baseUrl/handbook/seizure-activities';
+
+  // tendencies
+  static const statistics = '$baseUrl/tendencies';
 
   //Drugs
   static const drugs = '$baseUrl/drugs/index';

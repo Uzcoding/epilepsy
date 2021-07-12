@@ -29,13 +29,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  chartjs:
-    dependency: "direct main"
+  charts_common:
+    dependency: transitive
     description:
-      name: chartjs
+      name: charts_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.2"
+    version: "0.11.0"
+  charts_flutter:
+    dependency: "direct main"
+    description:
+      name: charts_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.0"
   clock:
     dependency: transitive
     description:
@@ -78,13 +85,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.1"
-  fading_edge_scrollview:
-    dependency: transitive
-    description:
-      name: fading_edge_scrollview
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -205,13 +205,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
-  marquee:
-    dependency: "direct main"
+  logging:
+    dependency: transitive
     description:
-      name: marquee
+      name: logging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "1.0.1"
   mask_text_input_formatter:
     dependency: "direct main"
     description:

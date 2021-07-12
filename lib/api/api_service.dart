@@ -6,6 +6,7 @@ import 'package:epilepsy/models/drug_list_api.dart';
 import 'package:epilepsy/models/models.dart';
 import 'package:epilepsy/models/seizure_type.dart';
 import 'package:epilepsy/models/seizures.dart';
+import 'package:epilepsy/models/tendencies.dart';
 import 'package:epilepsy/utils/Prefs.dart';
 import 'package:flutter/material.dart';
 
@@ -296,6 +297,22 @@ class ApiService {
       if (response.statusCode == 200) {
         var jsonString = response.body;
         return SeizuresApi.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
+
+  static Future<TendenciesApi> fetchStatistics() async {
+    var url = Uri.parse(ApiUrls.statistics);
+    try {
+      var response = await client.get(url, headers: headers);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return TendenciesApi.fromJson(json.decode(jsonString));
       }
       print('Request failed with status: ${response.statusCode}.');
       return null;

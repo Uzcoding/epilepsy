@@ -354,8 +354,10 @@ class _NewAccessScreenState extends State<NewAccessScreen> {
                                 borderRadius: BorderRadius.circular(24.0),
                               ),
                             ),
-                            child:
-                                Text('Сохранить', style: TextStyles.drugButton),
+                            child: Text(
+                              'Сохранить',
+                              style: TextStyles.drugButton,
+                            ),
                           ),
                         ),
                       ),
