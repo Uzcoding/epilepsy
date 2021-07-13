@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/models/EEGApi.dart';
 import 'package:epilepsy/models/drug_list_api.dart';
+import 'package:epilepsy/models/last_three.dart';
 import 'package:epilepsy/models/models.dart';
 import 'package:epilepsy/models/seizure_type.dart';
 import 'package:epilepsy/models/seizures.dart';
@@ -98,6 +99,24 @@ class ApiService {
       if (response.statusCode == 200) {
         var jsonString = response.body;
         return SeizureTypeModel.fromJson(json.decode(jsonString));
+      }
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    } catch (e) {
+      print('Request failed with error: $e.');
+      return null;
+    }
+  }
+
+  //last three
+
+  static Future<LastThree> fetchLastThree() async {
+    var url = Uri.parse(ApiUrls.lastThree);
+    try {
+      var response = await client.get(url, headers: headers);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return LastThree.fromJson(json.decode(jsonString));
       }
       print('Request failed with status: ${response.statusCode}.');
       return null;

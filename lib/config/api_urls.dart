@@ -29,6 +29,7 @@ abstract class ApiUrls {
   //SEIZURES
   static const seizuresByDate = '$baseUrl/seizures/date';
   static const seizureStore = '$baseUrl/seizures/store';
+  static const lastThree = '$baseUrl/seizures/index';
 
   //HandBook
 

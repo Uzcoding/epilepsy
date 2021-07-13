@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:epilepsy/config/config.dart';
+import 'package:epilepsy/controllers/last_three_controller.dart';
 import 'package:epilepsy/controllers/seizure_activities_controller.dart';
 import 'package:epilepsy/controllers/seizure_places_controller.dart';
 import 'package:epilepsy/controllers/seizure_reasons_controller.dart';
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     print(Prefs.token);
+    lastThreeController.fetchLastThree();
     _controller =
         AnimationController(vsync: this, duration: _HomeScreenState.duration);
   }
@@ -94,72 +96,102 @@ class _HomeScreenState extends State<HomeScreen>
       Get.put(SeizurePlacesController());
   final SeizureActivitiesController seizureActivitiesController =
       Get.put(SeizureActivitiesController());
+
+  final LastThreeController lastThreeController =
+      Get.find<LastThreeController>();
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragStart: _onDragStart,
-      onHorizontalDragUpdate: _onDragUpdate,
-      onHorizontalDragEnd: _onDragEnd,
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          double animationVal = _controller.value;
-          double translateVal = animationVal * maxSlide;
-          double scaleVal = 1 - (animationVal * 0.3);
+    return Obx(() {
+      var data = lastThreeController.lastThreeList;
+      if (lastThreeController.isLoading.value) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (!lastThreeController.isLoading.value && data == null) {
+        return Text(
+          'ther is no data',
+          style: TextStyle(color: Colors.red),
+        );
+      }
+      return GestureDetector(
+        onHorizontalDragStart: _onDragStart,
+        onHorizontalDragUpdate: _onDragUpdate,
+        onHorizontalDragEnd: _onDragEnd,
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            double animationVal = _controller.value;
+            double translateVal = animationVal * maxSlide;
+            double scaleVal = 1 - (animationVal * 0.3);
 
-          return Stack(
-            children: [
-              CustomDrawer(),
-              Transform(
-                transform: Matrix4.identity()
-                  ..translate(translateVal)
-                  ..scale(scaleVal),
-                alignment: Alignment.centerLeft,
-                child: Scaffold(
-                  appBar: PreferredSize(
-                    preferredSize: Size(GetSize.width, 100.0),
-                    child: CustomAppBar(
-                      onTap: () => _toggleAnimation(),
-                      hasAction: true,
-                      isHome: true,
+            return Stack(
+              children: [
+                CustomDrawer(),
+                Transform(
+                  transform: Matrix4.identity()
+                    ..translate(translateVal)
+                    ..scale(scaleVal),
+                  alignment: Alignment.centerLeft,
+                  child: Scaffold(
+                    appBar: PreferredSize(
+                      preferredSize: Size(GetSize.width, 100.0),
+                      child: CustomAppBar(
+                        onTap: () => _toggleAnimation(),
+                        hasAction: true,
+                        isHome: true,
+                      ),
                     ),
-                  ),
-                  body: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomCard(),
-                        const SizedBox(height: 23.0),
-                        Text(
-                          'Последние приступы',
-                          style: const TextStyle(
-                            fontFamily: 'SF-UI-Display',
-                            color: Palette.darkBlue,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14.0,
+                    body: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomCard(),
+                          const SizedBox(height: 23.0),
+                          Text(
+                            'Последние приступы',
+                            style: const TextStyle(
+                              fontFamily: 'SF-UI-Display',
+                              color: Palette.darkBlue,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.0,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 23.0),
-                        Expanded(
-                          flex: 4,
-                          child: ListView.separated(
-                            itemCount: 3,
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 10.0),
-                            itemBuilder: (context, index) => TrainerCard(),
+                          const SizedBox(height: 23.0),
+                          Expanded(
+                            flex: 4,
+                            child: ListView.separated(
+                              itemCount:
+                                  lastThreeController.lastThreeList.length,
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(height: 10.0),
+                              itemBuilder: (context, index) => TrainerCard(
+                                type: lastThreeController
+                                    .lastThreeList[index].type,
+                                reason: lastThreeController
+                                    .lastThreeList[index].reason,
+                                date: lastThreeController
+                                    .lastThreeList[index].date,
+                                duration: lastThreeController
+                                    .lastThreeList[index].duration,
+                                place: lastThreeController
+                                    .lastThreeList[index].place,
+                                activity: lastThreeController
+                                    .lastThreeList[index].activity,
+                              ),
+                            ),
                           ),
-                        ),
-                        HomeFooter(),
-                      ],
+                          HomeFooter(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
-      ),
-    );
+              ],
+            );
+          },
+        ),
+      );
+    });
   }
 }

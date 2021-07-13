@@ -12,8 +12,6 @@ import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart';
 
-import 'widgets/scrolling_text.dart';
-
 class AddDrugScreen extends StatefulWidget {
   @override
   _AddDrugScreenState createState() => _AddDrugScreenState();
@@ -207,13 +205,14 @@ class _AddDrugScreenState extends State<AddDrugScreen> {
                               data: formData,
                               options: Options(
                                 headers: {
-                                  HttpHeaders.authorizationHeader:
-                                      'Bearer $token'
+                                  'Authorization': 'Bearer $token',
+                                  'Accept': 'application/json'
                                 },
                               ),
                             );
                             if (response.statusCode == 200) {
                               print('okayy');
+                              g.Get.back();
                             } else {
                               print('error in sending date to addDrug');
                             }

@@ -1,5 +1,6 @@
 import 'package:epilepsy/config/config.dart';
 import 'package:epilepsy/controllers/ProfileController.dart';
+import 'package:epilepsy/controllers/last_three_controller.dart';
 import 'package:epilepsy/screens/drugs/controllers/endi_drug_controller.dart';
 import 'package:epilepsy/screens/drugs/controllers/start_drug_controller.dart';
 import 'package:epilepsy/screens/screens.dart';
@@ -35,6 +36,8 @@ class _EpilepsyState extends State<Epilepsy> {
 
   final EndDrugController endDrugController = Get.put(EndDrugController());
   final ProfileController profileController = Get.put(ProfileController());
+  final LastThreeController lastThreeController =
+      Get.put(LastThreeController());
   @override
   void initState() {
     if (token != null && token != '') {

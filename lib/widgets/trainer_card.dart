@@ -3,9 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TrainerCard extends StatelessWidget {
+  final String place;
+  final String reason;
+  final String type;
+  final String date;
+  final String duration;
+  final String activity;
   const TrainerCard({
-    Key key,
-  }) : super(key: key);
+    @required this.place,
+    @required this.reason,
+    @required this.type,
+    @required this.date,
+    @required this.duration,
+    @required this.activity,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +41,8 @@ class TrainerCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Тренажерный зал',
+                    // 'Тренажерный зал',
+                    place,
                     style: TextStyles.trainerCardTitle,
                   ),
                   const SizedBox(height: 18.0),
@@ -43,7 +55,8 @@ class TrainerCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 5.0),
                           Text(
-                            'Атонический',
+                            // 'Атонический',
+                            type,
                             style: TextStyles.trainerCardText,
                           ),
                         ],
@@ -56,7 +69,8 @@ class TrainerCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 5.0),
                           Text(
-                            'Стресс',
+                            // 'Стресс',
+                            reason,
                             style: TextStyles.trainerCardText,
                           ),
                         ],
@@ -73,7 +87,8 @@ class TrainerCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 5.0),
                           Text(
-                            'Экзамен',
+                            activity,
+                            // 'Экзамен',
                             style: TextStyles.trainerCardText,
                           ),
                         ],
@@ -115,7 +130,8 @@ class TrainerCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 7.0),
                           Text(
-                            '13:30',
+                            // '13:30',
+                            date,
                             style: const TextStyle(
                               fontFamily: 'SF-UI-Display',
                               color: Colors.white,
@@ -126,7 +142,8 @@ class TrainerCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 6.0),
                       Text(
-                        'четверг 22/09',
+                        // 'четверг 22/09',
+                        date,
                         style: const TextStyle(
                           fontFamily: 'SF-UI-Display',
                           color: Colors.white,
@@ -166,7 +183,8 @@ class TrainerCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 7.0),
                           Text(
-                            '00:27',
+                            // '00:27',
+                            duration,
                             style: const TextStyle(
                               color: Colors.white,
                               fontFamily: 'SF-UI-Display',

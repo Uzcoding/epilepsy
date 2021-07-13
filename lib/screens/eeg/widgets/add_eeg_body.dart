@@ -166,7 +166,8 @@ class _AddEEGScreenState extends State<AddEEGScreen> {
                       data: formData,
                       options: Options(
                         headers: {
-                          HttpHeaders.authorizationHeader: 'Bearer $token'
+                          HttpHeaders.authorizationHeader: 'Bearer $token',
+                          'Accept': 'application/json'
                         },
                       ),
                     );
